@@ -124,7 +124,7 @@ class SkipConvNet(pl.LightningModule):
         self.drop    = nn.Dropout(0.5)
         
     
-    def forward(self, x, verbose=False):
+    def forward(self, x):
         
         # +++++++++++++++++++ Squeezing Path  +++++++++++++++++++++ #
         d1 = self.dconv1(x)
