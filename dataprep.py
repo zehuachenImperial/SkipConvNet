@@ -329,12 +329,12 @@ def prepareRealData(dataset, audiofiles, destloc):
 
 
 
-def prepareData(dataset, destloc):
-    with open('./Data/'+dataset+'_SimData.scp','r') as f:
+def prepareData(dataloc, destloc, dataset):
+    with open(dataloc+'/'+dataset+'_SimData.scp','r') as f:
         sim_audiofiles = f.readlines()
         prepareSimData(dataset, sim_audiofiles, destloc)
     if dataset != 'Train':
-        with open('./Data/'+dataset+'_RealData.scp','r') as f:
+        with open(dataloc+'/'+dataset+'_RealData.scp','r') as f:
             real_audiofiles = f.readlines()
             prepareRealData(dataset, real_audiofiles, destloc)
     
@@ -344,14 +344,15 @@ def prepareData(dataset, destloc):
 
 if __name__=='__main__':
 	parser = argparse.ArgumentParser(description='REVERB Challenge 2014 Data preperation')
-	parser.add_argument('--location', type=str, help='Location where specImages are stored (default: ./SpecImages/)', default='./SpecImages')
-	parser.add_argument('--dataset', type=str, help='Location where specImages are stored (default: "Dev,Eval,Train")', default='Dev,Eval,Train')
+	parser.add_argument('--dataloc', type=str, help='Absolute path for location of scp file (default: ./Data)', default='./Data')
+	parser.add_argument('--destloc', type=str, help='Absolute path for location to store SpecImages (default: ./SpecImages)', default='./SpecImages')
+	parser.add_argument('--dataset', type=str, help='List of datasets to prepare (default: \'Dev,Eval,Train\')', default='Dev,Eval,Train')
 	args = parser.parse_args()
-	destloc  = args.location
+	destloc  = args.dataloc
+	destloc  = args.destloc
 	dataset  = [item for item in args.dataset.split(',')]
-
 	for data in dataset:
-		prepareData(data, destloc)
+		prepareData(dataloc, destloc, data)
 
 
 
