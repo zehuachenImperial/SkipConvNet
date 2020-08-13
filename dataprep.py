@@ -1,4 +1,4 @@
-import os
+import os, argparse
 import numpy as np
 import pandas as pd
 import soundfile as sf
@@ -203,19 +203,17 @@ def psd(audio):
     Mag      = np.hstack((Mag, pad_seq))
     Phase    = np.hstack((Phase, 0.0*pad_seq))
 
-
     Mag_smooth = mag2dB(norm(optimal_smoothing(Mag)))
-    Mag_smooth[Mag_smooth<-120] = -120
-
-    Mag  = mag2dB(norm(Mag))
-    Mag[Mag<-120] = -120
-
-    minmax   = [np.min(Mag), np.max(Mag)]
+    Mag_smooth[Mag_smooth<-80] = -80
     minmax_smooth   = [np.min(Mag_smooth), np.max(Mag_smooth)]
-
-    Mag_norm = np.interp(Mag, minmax, [-1,1])
     Mag_smooth_norm = np.interp(Mag_smooth, minmax_smooth, [-1,1])
-
+    
+    Mag  = mag2dB(norm(Mag))
+    Mag[Mag<-80] = -80
+    minmax   = [np.min(Mag), np.max(Mag)]
+    Mag_norm = np.interp(Mag, minmax, [-1,1])
+    
+    
     psd = {}
     psd['MagdB'] = Mag_norm
     psd['MagdB_smooth'] = Mag_smooth_norm
@@ -288,7 +286,7 @@ def spectralImages_2D(audioName, reverbloc, cleanloc):
 
 def prepareSimData(dataset, audiofiles, destloc):
     pbar = pkbar.Pbar(name='Preparing SpecImages for '+dataset+' (Sim)', target=len(audiofiles))
-    for i in range(len(sim_audiofiles)):
+    for i in range(len(audiofiles)):
         audio = audiofiles[i]
         audio = audio.strip()
         audioName, audioLoc = audio.split()
@@ -332,22 +330,28 @@ def prepareRealData(dataset, audiofiles, destloc):
 
 
 def prepareData(dataset, destloc):
+    with open('./Data/'+dataset+'_SimData.scp','r') as f:
+        sim_audiofiles = f.readlines()
+        prepareSimData(dataset, sim_audiofiles, destloc)
     if dataset != 'Train':
-        with open('./Data/'+dataset+'/real.scp','r') as f:
+        with open('./Data/'+dataset+'_RealData.scp','r') as f:
             real_audiofiles = f.readlines()
             prepareRealData(dataset, real_audiofiles, destloc)
-    else:
-        with open('./Data/'+dataset+'/reverb.scp','r') as f:
-            sim_audiofiles = f.readlines()
-            prepareSimData(dataset, sim_audiofiles, destloc)
+    
     return
  
 
 
 if __name__=='__main__':
-    dataset = 'Dev'
-    destloc = './SpecImages'
-    prepareData('Train')
+	parser = argparse.ArgumentParser(description='REVERB Challenge 2014 Data preperation')
+	parser.add_argument('--location', type=str, help='Location where specImages are stored (default: ./SpecImages/)', default='./SpecImages')
+	parser.add_argument('--dataset', type=str, help='Location where specImages are stored (default: [\'Dev\',\'Eval\',\'Train\'])', default='Dev,Eval,Train')
+	args = parser.parse_args()
+	destloc  = args.location
+	dataset  = [item for item in args.dataset.split(',')]
+
+	for data in dataset:
+		prepareData(data, destloc)
 
 
 
