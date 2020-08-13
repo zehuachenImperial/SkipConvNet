@@ -345,7 +345,7 @@ def prepareData(dataset, destloc):
 if __name__=='__main__':
 	parser = argparse.ArgumentParser(description='REVERB Challenge 2014 Data preperation')
 	parser.add_argument('--location', type=str, help='Location where specImages are stored (default: ./SpecImages/)', default='./SpecImages')
-	parser.add_argument('--dataset', type=str, help='Location where specImages are stored (default: [\'Dev\',\'Eval\',\'Train\'])', default='Dev,Eval,Train')
+	parser.add_argument('--dataset', type=str, help='Location where specImages are stored (default: "Dev,Eval,Train")', default='Dev,Eval,Train')
 	args = parser.parse_args()
 	destloc  = args.location
 	dataset  = [item for item in args.dataset.split(',')]
