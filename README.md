@@ -10,6 +10,8 @@ Vinay Kothapally, Wei Xia, Shahram Ghorbani, John H.L Hansen, Wei Xue, Jing Huan
 
 ## Getting started
 
+Use git-lfs to clone this repo.
+
 ### Required Installations
 - Get [CUDA 10.1](https://developer.nvidia.com/cuda-10.1-download-archive-base)
   installed on your machine.
