@@ -20,3 +20,17 @@ Vinay Kothapally, Wei Xia, Shahram Ghorbani, John H.L Hansen, Wei Xue, Jing Huan
 inference and should work out of the box.
 - Install [PyTorch-Lightning](https://github.com/PyTorchLightning/pytorch-lightning) from its official repo.
 - Install pkbar, soundfile, kaldiio, librosa 
+
+
+### Train SkipConvNet for Reverb Challenge (2014)
+
+This repo uses datapreperation files from Kaldi recipie. Please make sure you run the datapreperation for Reverb Challenge using [Kaldi](https://github.com/kaldi-asr/kaldi/tree/master/egs/reverb/) scripts.
+
+``` bash
+# Copy the wav.scp for Train, Dev and Eval from Kaldi
+cp your-kaldi-dir/reverb/s5/data/tr_simu_1ch/wav.scp ./Data/Train_SimData.scp
+cp your-kaldi-dir/reverb/s5/data/dt_simu_1ch/wav.scp ./Data/Dev_SimData.scp
+cp your-kaldi-dir/reverb/s5/data/et_simu_1ch/wav.scp ./Data/Eval_SimData.scp
+cp your-kaldi-dir/reverb/s5/data/dt_real_1ch/wav.scp ./Data/Dev_RealData.scp
+cp your-kaldi-dir/reverb/s5/data/et_real_1ch/wav.scp ./Data/Eval_RealData.scp
+```
