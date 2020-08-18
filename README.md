@@ -24,8 +24,24 @@ inference and should work out of the box.
 
 ### Quick Run - For Enhancing your audiofiles
 
-This repo uses datapreperation files from Kaldi recipie. Please make sure you run the datapreperation for Reverb Challenge using [Kaldi](https://github.com/kaldi-asr/kaldi/tree/master/egs/reverb/) scripts.
+Create a scp file with reverberant absolute locations of reverberant and enhanced audiofiles as follows
 
+``` bash
+myaudiofiles.scp
+
+reverb_01 /home/...../reverb/reverb_01.wav /home/...../enhance/reverb_01_enhanced.wav
+reverb_02 /home/...../reverb/reverb_02.wav /home/...../enhance/reverb_02_enhanced.wav
+reverb_03 /home/...../reverb/reverb_03.wav /home/...../enhance/reverb_03_enhanced.wav
+...
+...
+
+```
+
+Run the demo file - (Make sure you go through scripts and comment mentioned lines to run on your system)
+
+```bash
+python demo.py --audiofilelist myaudiofiles.scp
+```
 
 ### Reverb Challenge (2014) - Train & Evaluate
 
