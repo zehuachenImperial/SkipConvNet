@@ -67,3 +67,21 @@ python train.py --gpuIDs 0,1,2
 python decode.py
 
 ```
+
+
+
+## Citation & Contact
+If you find this repo useful for your research, please consider citing this bibtex:
+
+```tex
+@article{kothapally2020skipconvnet,
+  title={SkipConvNet: Skip Convolutional Neural Network for Speech Dereverberation using Optimally Smoothed Spectral Mapping},
+  author={Kothapally, Vinay and Xia, Wei and Ghorbani, Shahram and Hansen, John HL and Xue, Wei and Huang, Jing},
+  journal={arXiv preprint arXiv:2007.09131},
+  year={2020}
+}
+```
+*Bibtex will be updated upon acceptance*
+
+Please feel free to reach out to me Vinay Kothapally `<vinay.kothapally@utdallas.edu>` with any comments or feedback.
+
