@@ -22,6 +22,14 @@ inference and should work out of the box.
 - Install pkbar, soundfile, kaldiio, librosa 
 
 
+### SkipConNet Network
+
+<img src='./Images/Enhancement_algorithms.png' width=1024>
+
+The feature information transfered from encoder to the decoder in a FCN using skip connection have a semantic gap. Addition of a few convolutional layers
+within each skip connection can compensate for the semantic gap by transforming the learnt features at encoder to be more
+intuitive to the decoder. Thus, the learning ability of FCN’s can potentially be maximized.
+
 ### Quick Run - For Enhancing your audiofiles
 
 Create a scp file with reverberant absolute locations of reverberant and enhanced audiofiles as follows
