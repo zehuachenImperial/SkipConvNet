@@ -24,7 +24,7 @@ inference and should work out of the box.
 
 ### SkipConNet Network
 
-<img src='./Images/SkipConNet.png' width=1024>
+<img src='./Images/SkipConvNet.png' width=1024>
 
 The feature information transfered from encoder to the decoder in a FCN using skip connection have a semantic gap. Addition of a few convolutional layers
 within each skip connection can compensate for the semantic gap by transforming the learnt features at encoder to be more
@@ -80,7 +80,7 @@ python decode.py
 
 We run the speech quality metrics used for evaluations in Reverb Challenge. For more information about the challenge please check [this](https://reverb2014.dereverberation.com/).
 
-<img src='./Images/SkipConNet.png' width=1024>
+<img src='./Images/Quality_Metrics.png' width=1024>
 
 We also see improvements in back-end speech applications like ASR and Speaker Verification using this enhancement strategy. Please refer the paper for further details.
 
